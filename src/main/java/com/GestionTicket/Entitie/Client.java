@@ -1,19 +1,20 @@
 package com.GestionTicket.Entitie;
 
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+
 
 @Entity
 public class Client {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "Idclient")
-    private Long Idclient;
+	@Column(name = "idClient")
+    private Long idClient;
     
    
     @Column(name = "nom")
@@ -29,18 +30,15 @@ public class Client {
    
     @Column(name = "email")
     private String email;
-    
-     @OneToOne
-	 @JoinColumn(name = "CompteId", referencedColumnName = "compteId")
-	
-    private Compte compte;
 
-	public Long getIdclient() {
-		return Idclient;
+
+	
+	public Long getIdClient() {
+		return idClient;
 	}
 
-	public void setIdclient(Long idclient) {
-		Idclient = idclient;
+	public void setIdClient(Long idClient) {
+		this.idClient = idClient;
 	}
 
 	public String getNom() {
@@ -74,6 +72,7 @@ public class Client {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
     
     
 }

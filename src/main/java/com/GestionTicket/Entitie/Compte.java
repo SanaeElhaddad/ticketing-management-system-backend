@@ -7,19 +7,26 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Compte implements UserDetails {
+	@JsonIgnore
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long compteId;
+    private Long idCompte;
 
 
     @Column(name = "nomUtilisateur")
@@ -37,12 +44,37 @@ public class Compte implements UserDetails {
     @Column(name = "role")
     private String role;
 
-	public Long getCompteId() {
-		return compteId;
+    @OneToOne
+	@JoinColumn(name = "idAgent", referencedColumnName = "idAgent")
+    Agent agent;
+    
+    @OneToOne
+   	@JoinColumn(name = "idClient", referencedColumnName = "idClient")
+    Client client;
+       
+	public Agent getAgent() {
+		return agent;
 	}
 
-	public void setCompteId(Long compteId) {
-		this.compteId = compteId;
+	public void setAgent(Agent agent) {
+		this.agent = agent;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+
+	public Long getIdCompte() {
+		return idCompte;
+	}
+
+	public void setIdCompte(Long idCompte) {
+		this.idCompte = idCompte;
 	}
 
 	public String getNomUtilisateur() {

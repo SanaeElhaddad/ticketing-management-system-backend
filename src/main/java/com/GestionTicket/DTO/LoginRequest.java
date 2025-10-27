@@ -2,6 +2,8 @@ package com.GestionTicket.DTO;
 
 import java.util.List;
 
+import com.GestionTicket.Entitie.Agent;
+import com.GestionTicket.Entitie.Client;
 import com.GestionTicket.Entitie.Compte;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -19,6 +21,8 @@ public class LoginRequest {
     private String email;
     private String role;
     private Compte compte;
+    private Client client;
+    private Agent agent; 
     private List<Compte> comptes;
     
     
@@ -96,6 +100,18 @@ public class LoginRequest {
 	}
 	public void setComptes(List<Compte> comptes) {
 		this.comptes = comptes;
+	}
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	public Agent getAgent() {
+		return agent;
+	}
+	public void setAgent(Agent agent) {
+		this.agent = agent;
 	}
     
     
